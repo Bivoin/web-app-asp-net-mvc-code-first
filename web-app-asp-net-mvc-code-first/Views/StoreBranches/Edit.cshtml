@@ -1,0 +1,13 @@
+﻿@using web_app_asp_net_mvc_code_first.Models.Entities
+@model StoreBranch
+
+<h3>Филиал</h3>
+
+@using (Html.BeginForm("Edit", "StoreBranches", FormMethod.Post))
+{
+    @Html.ValidationSummary()
+    @Html.EditorForModel()
+
+    <input type="submit" value="Сохранить" />
+    @Html.ActionLink("Отменить", "Index", "StoreBranches")
+}

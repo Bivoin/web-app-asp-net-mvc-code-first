@@ -1,0 +1,66 @@
+﻿@using web_app_asp_net_mvc_code_first.Models.Entities
+@model List<Product>
+
+<h3>Продукты</h3>
+
+@Html.ActionLink("Добавить запись", "Create", "Products")
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Наименование
+            </th>
+            <th>
+                Цена
+            </th>
+            <th>
+                Есть в филиале(ах)
+            </th>
+            <th>
+                Количество в наличии
+            </th>
+            <th>
+                Дата следующего поступления
+            </th>
+            <th>
+                Дата создания записи
+            </th>
+            <th>
+                Действия
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>
+                    <img src="/Products/GetImage/@product.Id" style="max-width: 100px; max-height: 200px;" />
+                </td>
+                <td>
+                    @product.Name
+                </td>
+                <td>
+                    @product.Price
+                </td>
+                <td>
+                    @string.Join(", ", product.StoreBranches.Select(x => $"{x.StoreBranchName} {x.WorkingHours}"))
+                </td>
+                <td>
+                    @product.NumberOfProducts
+                </td>
+                <td>
+                    @product.NextArrivalDate.ToString("dd-MM-yy")
+                </td>
+                <td>
+                    @product.CreateAt.ToString("dd-MM-yy HH-mm-ss")
+                </td>
+                <td>
+                    @Html.ActionLink("Удалить", "Delete", "Products", new { id = product.Id }, new { })
+                    @Html.ActionLink("Изменить", "Edit", "Products", new { id = product.Id }, new { })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

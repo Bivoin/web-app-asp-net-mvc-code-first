@@ -1,0 +1,52 @@
+﻿@using web_app_asp_net_mvc_code_first.Models.Entities
+@using web_app_asp_net_mvc_code_first.Extensions
+@model List<StoreBranch>
+
+<h3>Филиалы</h3>
+
+@Html.ActionLink("Добавить запись", "Create", "StoreBranches")
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Название филиала
+            </th>
+            <th>
+                Время работы
+            </th>
+            <th>
+                Регион
+            </th>
+            <th>
+                Город
+            </th>
+            <th>
+                Действия
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var store_branch in Model)
+        {
+            <tr>
+                <td>
+                    @store_branch.StoreBranchName
+                </td>
+                <td>
+                    @store_branch.WorkingHours
+                </td>
+                <td>
+                    @store_branch.Region.GetDisplayValue()
+                </td>
+                <td>
+                    @store_branch.City
+                </td>
+                <td>
+                    @Html.ActionLink("Удалить", "Delete", "StoreBranches", new { id = store_branch.Id }, new { })
+                    @Html.ActionLink("Изменить", "Edit", "StoreBranches", new { id = store_branch.Id }, new { })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

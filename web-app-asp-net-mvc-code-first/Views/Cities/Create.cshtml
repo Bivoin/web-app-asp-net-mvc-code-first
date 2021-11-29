@@ -1,0 +1,12 @@
+﻿@using web_app_asp_net_mvc_code_first.Models.Entities
+@model City
+
+<h3>Жанр</h3>
+
+@using (Html.BeginForm("Create", "Cities", FormMethod.Post))
+{
+    @Html.EditorForModel()
+
+    <input type="submit" value="Сохранить" />
+    @Html.ActionLink("Отменить", "Index", "Cities")
+}
